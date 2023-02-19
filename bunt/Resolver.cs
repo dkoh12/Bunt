@@ -276,6 +276,12 @@
             return null;
         }
 
+        public object visitBreakStmt(Stmt.Break stmt)
+        {
+            // TODO - need to check that this can only occur inside a loop
+            return null;
+        }
+
         public object visitClassStmt(Stmt.Class stmt)
         {
             ClassType enclosingClass = currentClass;
@@ -322,6 +328,12 @@
 
             currentClass = enclosingClass;
 
+            return null;
+        }
+
+        public object visitContinueStmt(Stmt.Continue stmt)
+        {
+            // TODO - need to check that this can only occur inside a loop
             return null;
         }
 

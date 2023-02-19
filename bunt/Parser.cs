@@ -124,6 +124,8 @@ namespace bunt
 
         Stmt statement()
         {
+            if (match(TokenType.BREAK)) return breakStatement();
+            if (match(TokenType.CONTINUE)) return continueStatement();
             if (match(TokenType.FOR)) return forStatement();
             if (match(TokenType.IF)) return ifStatement();
             if (match(TokenType.PRINT)) return printStatement();
@@ -132,6 +134,20 @@ namespace bunt
             if (match(TokenType.LEFT_BRACE)) return new Stmt.Block(block());
 
             return expressionStatement();
+        }
+
+        Stmt breakStatement()
+        {
+            Token keyword = previous();
+            consume(TokenType.SEMICOLON, "Expect ';' after return value.");
+            return new Stmt.Break(keyword);
+        }
+
+        Stmt continueStatement()
+        {
+            Token keyword = previous();
+            consume(TokenType.SEMICOLON, "Expect ';' after return value.");
+            return new Stmt.Continue(keyword);
         }
 
         // forStmt -> "for" "(" ( varDecl | exprStmt | ";" ) expression? ";" expression? ")" statement;

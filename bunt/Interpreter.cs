@@ -38,7 +38,12 @@ namespace bunt
                 {
                     execute(statement);
                 }
-            } catch (RuntimeError e)
+            } 
+            catch (Break b)
+            {
+                // do nothing. We should exit out of block statement.
+            }
+            catch (RuntimeError e)
             {
                 Bunt.runtimeError(e);
             }
@@ -278,6 +283,12 @@ namespace bunt
             return null;
         }
 
+        public object visitBreakStmt(Stmt.Break stmt)
+        {
+            // exit out of loop
+            throw new Break();
+        }
+
         public object visitClassStmt(Stmt.Class stmt)
         {
             object superclass = null;
@@ -313,6 +324,14 @@ namespace bunt
             }
 
             environment.assign(stmt.name, klass);
+            return null;
+        }
+
+        public object visitContinueStmt(Stmt.Continue stmt)
+        {
+
+            // besides incrementing the counter I need to exit out of the bunt Env.
+
             return null;
         }
 
@@ -421,6 +440,7 @@ namespace bunt
             {
                 this.environment = environment;
 
+                // if a 'continue' flag is passed, this needs to throw an error.
                 foreach (Stmt statement in statements)
                 {
                     execute(statement);

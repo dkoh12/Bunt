@@ -12,4 +12,12 @@
         }
 
     }
+
+    /// <summary>
+    /// We throw an exception upon 'break' to throw away the function call stack and exit.
+    /// </summary>
+    public class Break : Exception
+    {
+
+    }
 }

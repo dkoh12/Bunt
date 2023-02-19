@@ -33,7 +33,9 @@
 
         // keywords
         AND,
+        BREAK,
         CLASS,
+        CONTINUE,
         ELSE,
         FALSE,
         FUN,

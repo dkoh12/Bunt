@@ -8,7 +8,9 @@
 <# 
 var dic = new Dictionary<string, string>() {
 	{ "Block",      "List<Stmt> statements" },
+	{ "Break",      "Token keyword" },
 	{ "Class",      "Token name, Expr.Variable superclass, List<Stmt.Function> methods" },
+	{ "Continue",   "Token keyword" },
 	{ "Expression", "Expr expression"},
 	{ "Function",   "Token name, List<Token> parameters, List<Stmt> body" }, // params is a C# reserved keyword
 	{ "If",         "Expr condition, Stmt thenBranch, Stmt elseBranch" },

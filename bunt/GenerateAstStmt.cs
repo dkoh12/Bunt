@@ -8,7 +8,9 @@ namespace bunt
 	{
 		public interface IVisitor<T> {
 		T visitBlockStmt(Block stmt);
+		T visitBreakStmt(Break stmt);
 		T visitClassStmt(Class stmt);
+		T visitContinueStmt(Continue stmt);
 		T visitExpressionStmt(Expression stmt);
 		T visitFunctionStmt(Function stmt);
 		T visitIfStmt(If stmt);
@@ -31,6 +33,19 @@ namespace bunt
 			}
 		}
 	
+		public class Break : Stmt
+		{
+			public readonly Token keyword;
+
+			public Break(Token keyword) {
+				this.keyword = keyword;
+			}
+						
+			public override T accept<T>(IVisitor<T> visitor) {
+				return visitor.visitBreakStmt(this);
+			}
+		}
+	
 		public class Class : Stmt
 		{
 			public readonly Token name;
@@ -45,6 +60,19 @@ namespace bunt
 						
 			public override T accept<T>(IVisitor<T> visitor) {
 				return visitor.visitClassStmt(this);
+			}
+		}
+	
+		public class Continue : Stmt
+		{
+			public readonly Token keyword;
+
+			public Continue(Token keyword) {
+				this.keyword = keyword;
+			}
+						
+			public override T accept<T>(IVisitor<T> visitor) {
+				return visitor.visitContinueStmt(this);
 			}
 		}
 	
