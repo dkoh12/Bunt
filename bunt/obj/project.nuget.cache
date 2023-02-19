@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "sUr4yBq0LMIX4WDv4tFKYjSPU1D/kruxbHI0jYhXevApNyagzk7iQ80qVdWJh3RuebmEin5Le2q+QmK5ogqh1w==",
+  "dgSpecHash": "2IIp7raR19mL0/rW3bOCiaMX7qDb+iNH0sRgL+pwqwUT/N6EaXHwi9FsT/sHVW0dOUhzTQnQUOV2W/t2DqByXw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\davidkoh\\devel\\Bunt\\bunt\\bunt.csproj",
+  "projectFilePath": "C:\\Users\\davidkoh\\devel\\bunt\\bunt\\bunt.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

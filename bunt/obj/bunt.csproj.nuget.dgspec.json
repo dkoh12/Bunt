@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\davidkoh\\devel\\Bunt\\bunt\\bunt.csproj": {}
+    "C:\\Users\\davidkoh\\devel\\bunt\\bunt\\bunt.csproj": {}
   },
   "projects": {
-    "C:\\Users\\davidkoh\\devel\\Bunt\\bunt\\bunt.csproj": {
+    "C:\\Users\\davidkoh\\devel\\bunt\\bunt\\bunt.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\davidkoh\\devel\\Bunt\\bunt\\bunt.csproj",
+        "projectUniqueName": "C:\\Users\\davidkoh\\devel\\bunt\\bunt\\bunt.csproj",
         "projectName": "bunt",
-        "projectPath": "C:\\Users\\davidkoh\\devel\\Bunt\\bunt\\bunt.csproj",
+        "projectPath": "C:\\Users\\davidkoh\\devel\\bunt\\bunt\\bunt.csproj",
         "packagesPath": "C:\\Users\\davidkoh\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\davidkoh\\devel\\Bunt\\bunt\\obj\\",
+        "outputPath": "C:\\Users\\davidkoh\\devel\\bunt\\bunt\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\davidkoh\\AppData\\Roaming\\NuGet\\NuGet.Config",

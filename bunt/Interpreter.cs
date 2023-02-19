@@ -285,7 +285,7 @@ namespace bunt
 
         public object visitBreakStmt(Stmt.Break stmt)
         {
-            // exit out of loop
+            // exit out of loop - but only the loop. still want to proceed with other statements
             throw new Break();
         }
 
@@ -329,10 +329,7 @@ namespace bunt
 
         public object visitContinueStmt(Stmt.Continue stmt)
         {
-
-            // besides incrementing the counter I need to exit out of the bunt Env.
-
-            return null;
+            throw new Continue();
         }
 
         public object visitExpressionStmt(Stmt.Expression stmt)
@@ -395,9 +392,24 @@ namespace bunt
 
         public object visitWhileStmt(Stmt.While stmt)
         {
-            while (isTruthy(evaluate(stmt.condition)))
+            environment.define("while", true); // for 'break' and 'continue'
+
+            try
             {
-                execute(stmt.body);
+                while (isTruthy(evaluate(stmt.condition)))
+                {
+                    try
+                    {
+                        execute(stmt.body);
+                    }
+                    catch (Continue)
+                    {
+                        // do nothing.
+                    }
+                }
+            } catch (Break)
+            {
+                // do nothing.
             }
 
             return null;
@@ -445,7 +457,7 @@ namespace bunt
                 {
                     execute(statement);
                 }
-            } 
+            }             
             finally
             {
                 this.environment = previous;

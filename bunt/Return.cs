@@ -20,4 +20,12 @@
     {
 
     }
+
+    /// <summary>
+    /// We throw an exception upon 'continue' to throw away the current block and exit.
+    /// </summary>
+    public class Continue : Exception
+    {
+
+    }
 }

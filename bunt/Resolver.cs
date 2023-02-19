@@ -22,6 +22,7 @@
         readonly Stack<Dictionary<string, bool>> scopes = new Stack<Dictionary<string, bool>>(); // only for local block scopes. not for variables in global scope
         FunctionType currentFunction = FunctionType.NONE;
         ClassType currentClass = ClassType.NONE;
+        LoopType currentLoop = LoopType.NONE;
 
         public Resolver(Interpreter interpreter) 
         { 
@@ -41,6 +42,12 @@
             NONE,
             CLASS,
             SUBCLASS
+        }
+
+        enum LoopType
+        {
+            NONE,
+            LOOP
         }
 
         public void resolve(List<Stmt> statements)
@@ -278,7 +285,11 @@
 
         public object visitBreakStmt(Stmt.Break stmt)
         {
-            // TODO - need to check that this can only occur inside a loop
+            if (currentLoop == LoopType.NONE)
+            {
+                Bunt.error(stmt.keyword, "Can't break from outside a loop.");
+            }
+
             return null;
         }
 
@@ -333,7 +344,11 @@
 
         public object visitContinueStmt(Stmt.Continue stmt)
         {
-            // TODO - need to check that this can only occur inside a loop
+            if (currentLoop == LoopType.NONE)
+            {
+                Bunt.error(stmt.keyword, "Can't continue from outside a loop.");
+            }
+
             return null;
         }
 
@@ -404,8 +419,18 @@
 
         public object visitWhileStmt(Stmt.While stmt)
         {
+            LoopType enclosingLoop = currentLoop;
+            currentLoop = LoopType.LOOP;
+
+            // this is a placeholder for 'continue' to exit the while loop.
+            // we need to handle the case where 'continue' statement is inside multiple nested if statements.
+            // scopes.Peek().Add("while", true); // does this make sense? scopes is not the same as Environment.
+
             resolve(stmt.condition);
             resolve(stmt.body);
+
+            currentLoop = enclosingLoop;
+
             return null;
         }
 
