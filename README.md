@@ -23,7 +23,6 @@ It supports among many things.
 
 
 ## Bunt REPL
----
 
 ### Launch Bunt REPL from Visual Studio
 
@@ -55,10 +54,9 @@ and this will launch the REPL session.
 
 
 ## Execute Bunt files
----
 
 Follow the same steps as `Launch Bunt REPL from command line` section. Pass a single file as an argument.
 
 ```
-.\bunt\bin\Debug\net6.0\bunt.exe test.bunt
+.\bunt\bin\Debug\net6.0\bunt.exe .\tests\fun.bunt
 ```

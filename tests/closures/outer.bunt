@@ -1,0 +1,10 @@
+fun outerFunction() {
+    fun localFunction() {
+        print "I'm local!";
+    }
+
+    localFunction();
+}
+
+var x = outerFunction;
+x(); // expect "I'm local!"

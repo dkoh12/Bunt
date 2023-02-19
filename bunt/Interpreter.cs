@@ -3,7 +3,7 @@
 namespace bunt
 {
     // C# does not allow <Void> in Generics
-    public class Interpreter : Expr.IVisitor<Object>, Stmt.IVisitor<Object>
+    public class Interpreter : Expr.IVisitor<object>, Stmt.IVisitor<object>
     {
         private BuntEnvironment _globals;
         private BuntEnvironment environment;
@@ -136,7 +136,7 @@ namespace bunt
             {
                 arguments.Add(evaluate(argument));
             }
-                        
+            
             if (!(callee is IBuntCallable))
             {
                 throw new RuntimeError(expr.paren, "Can only call functions and classes.");
@@ -477,7 +477,7 @@ namespace bunt
         {
             if (left is float && right is float) return;
 
-            throw new RuntimeError(oprtor, "OPerands must be numbers.");
+            throw new RuntimeError(oprtor, "Operands must be numbers.");
         }
 
         #endregion

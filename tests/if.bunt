@@ -1,0 +1,12 @@
+if (true) {
+    print "yes"; // expect 'yes'
+} else {
+    print "no";
+}
+
+
+if (false) {
+    print "yes";
+} else {
+    print "no"; // expect 'no'
+}

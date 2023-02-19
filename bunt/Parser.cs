@@ -222,7 +222,7 @@ namespace bunt
             consume(TokenType.RIGHT_PAREN, "Expect ')' after if condition.");
 
             Stmt thenBranch = statement();
-            Stmt elseBranch = statement();
+            Stmt elseBranch = null;
             if (match(TokenType.ELSE))
             {
                 elseBranch = statement();

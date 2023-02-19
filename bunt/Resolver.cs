@@ -248,11 +248,17 @@
              *     var a = a;
              * }
              */
-            if (scopes.Count != 0 && scopes.Peek()[expr.name.lexeme] == false)
+            if (scopes.Count != 0)
             {
-                Bunt.error(expr.name, "Can't read local variable in its own initializer.");
-            }
+                bool value;
+                bool foundValue = scopes.Peek().TryGetValue(expr.name.lexeme, out value);
 
+                if (foundValue && value == false)
+                {
+                    Bunt.error(expr.name, "Can't read local variable in its own initializer.");
+                }
+            }
+            
             resolveLocal(expr, expr.name);
             return null;
         }
