@@ -392,8 +392,6 @@ namespace bunt
 
         public object visitWhileStmt(Stmt.While stmt)
         {
-            environment.define("while", true); // for 'break' and 'continue'
-
             try
             {
                 while (isTruthy(evaluate(stmt.condition)))

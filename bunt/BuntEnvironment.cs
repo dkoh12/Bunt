@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Xml.Linq;
-
-namespace bunt
+﻿namespace bunt
 {
     // Hack for hackathon :)
     // This is a problem if it's in production
