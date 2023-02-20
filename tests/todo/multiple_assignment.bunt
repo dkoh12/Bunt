@@ -1,0 +1,6 @@
+var a = var b = var c = 5;
+print a;
+print b;
+print c;
+
+// doesn't work

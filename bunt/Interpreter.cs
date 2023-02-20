@@ -109,11 +109,26 @@ namespace bunt
                         if (left is string && right is string)
                             return (string)left + (string)right;
 
+                        if (left is string)
+                        {
+                            return (string)left + Convert.ToString(right);
+                        }
+                        else if (right is string)
+                        {
+                            return Convert.ToString(left) + (string)right;
+                        }
+
                         throw new RuntimeError(expr.oprtor, "Operands must be two numbers or two strings.");
                     }
                 case TokenType.SLASH:
                     {
                         checkNumberOperands(expr.oprtor, left, right);
+
+                        if ((float)right == 0)
+                        {
+                            throw new RuntimeError(expr.oprtor, "Cannot divide by zero.");
+                        }
+
                         return (float)left / (float)right;
                     }
                 case TokenType.STAR:

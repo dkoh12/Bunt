@@ -7,4 +7,4 @@ fun notMethod(argument)
 
 var box = Box();
 box.function = notMethod;
-box.function("argument");
+box.function("argument"); // expect "called function with argument"

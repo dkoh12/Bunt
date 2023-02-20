@@ -1,0 +1,4 @@
+print 1 + 2; //expect 3
+print "hello" + " " + "world"; // expect hello world
+print "scone" + 4; // expect scone4
+print 5 + " bucks"; // expect 5 bucks
