@@ -12,6 +12,7 @@ var dic = new Dictionary<string, string>() {
 	{ "Call",     "Expr callee, Token paren, List<Expr> arguments" },
 	{ "Get",      "Expr obj, Token name" }, // object is a C# reserved keyword
 	{ "Grouping", "Expr expression" },
+	{ "List",     "List<Expr> values" },
 	{ "Literal",  "Object value" },
 	{ "Logical",  "Expr left, Token oprtor, Expr right" }, // operator is a C# reserved keyword
 	{ "Set",      "Expr obj, Token name, Expr value" }, // object is a C# reserved keyword

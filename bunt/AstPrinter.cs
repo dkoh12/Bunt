@@ -42,6 +42,11 @@ namespace bunt
             return parenthesize("group", expr.expression);
         }
 
+        public string visitListExpr(Expr.List expr)
+        {
+            throw new NotImplementedException();
+        }
+
         public string visitLiteralExpr(Expr.Literal expr)
         {
             if (expr.value == null) return "nil";

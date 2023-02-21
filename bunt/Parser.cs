@@ -542,6 +542,20 @@ namespace bunt
                 return new Expr.Grouping(expr);
             }
 
+            if (match(TokenType.LEFT_BRACKET))
+            {
+                List<Expr> array = new List<Expr>();
+
+                do
+                {
+                    array.Add(expression());
+                } while (match(TokenType.COMMA));
+
+                consume(TokenType.RIGHT_BRACKET, "Expect ']' after elements.");
+
+                return new Expr.List(array);
+            }
+
             throw error(peek(), "Expect expression.");
         }
 

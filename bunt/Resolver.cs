@@ -191,6 +191,16 @@
             return null;
         }
 
+        public object visitListExpr(Expr.List expr)
+        {
+            foreach (Expr value in expr.values)
+            {
+                resolve(value);
+            }
+
+            return null;
+        }
+
         public object visitLiteralExpr(Expr.Literal expr)
         {
             return null;

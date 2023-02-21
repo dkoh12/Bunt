@@ -1,4 +1,5 @@
 ﻿using bunt.NativeFunctions;
+using System.Text;
 
 namespace bunt
 {
@@ -186,6 +187,18 @@ namespace bunt
         public object visitGroupingExpr(Expr.Grouping expr)
         {
             return evaluate(expr.expression);
+        }
+
+        public object visitListExpr(Expr.List expr)
+        {
+            BuntList buntList = new BuntList();
+
+            foreach (Expr value in expr.values)
+            {
+                buntList.Add(evaluate(value));
+            }
+
+            return buntList;
         }
 
         public object visitLiteralExpr(Expr.Literal expr)
