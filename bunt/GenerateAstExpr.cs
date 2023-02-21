@@ -12,6 +12,7 @@ namespace bunt
 		T visitCallExpr(Call expr);
 		T visitGetExpr(Get expr);
 		T visitGroupingExpr(Grouping expr);
+		T visitLambdaExpr(Lambda expr);
 		T visitListExpr(List expr);
 		T visitLiteralExpr(Literal expr);
 		T visitLogicalExpr(Logical expr);
@@ -93,6 +94,20 @@ namespace bunt
 
 			public override T accept<T>(IVisitor<T> visitor) {
 				return visitor.visitGroupingExpr(this);
+			}
+		}
+		public class Lambda : Expr
+		{
+			public readonly List<Token> parameters;
+			public readonly List<Stmt> body;
+
+			public Lambda(List<Token> parameters, List<Stmt> body) {
+				this.parameters = parameters;
+				this.body = body;
+			}
+
+			public override T accept<T>(IVisitor<T> visitor) {
+				return visitor.visitLambdaExpr(this);
 			}
 		}
 		public class List : Expr

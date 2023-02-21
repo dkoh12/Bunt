@@ -132,18 +132,18 @@
         /// the function gets called.
         /// In static analysis we immediately traverse the body.
         /// </summary>
-        void resolveFunction(Stmt.Function function, FunctionType type)
+        void resolveFunction(List<Token> parameters, List<Stmt> body, FunctionType type)
         {
             FunctionType enclosingFunction = currentFunction;
             currentFunction = type;
 
             beginScope();
-            foreach (Token param in function.parameters)
+            foreach (Token param in parameters)
             {
                 declare(param);
                 define(param);
             }
-            resolve(function.body);
+            resolve(body);
             endScope();
 
             currentFunction = enclosingFunction;
@@ -188,6 +188,12 @@
         public object visitGroupingExpr(Expr.Grouping expr)
         {
             resolve(expr.expression);
+            return null;
+        }
+
+        public object visitLambdaExpr(Expr.Lambda expr)
+        {
+            resolveFunction(expr.parameters, expr.body, FunctionType.FUNCTION);
             return null;
         }
 
@@ -351,7 +357,7 @@
                     declaration = FunctionType.INITIALIZER;
                 }
 
-                resolveFunction(method, declaration);
+                resolveFunction(method.parameters, method.body, declaration);
             }
 
             endScope();
@@ -387,7 +393,7 @@
             declare(stmt.name);
             define(stmt.name);
 
-            resolveFunction(stmt, FunctionType.FUNCTION);
+            resolveFunction(stmt.parameters, stmt.body, FunctionType.FUNCTION);
             return null;
         }
 

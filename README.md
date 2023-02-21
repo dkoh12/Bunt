@@ -4,6 +4,7 @@ It supports among many things.
 
 - arithmetic
 - functions
+- anonymous functions / lambdas
 - if statements
 - while / for loops
 - break

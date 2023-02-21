@@ -163,7 +163,6 @@ namespace bunt
                 throw new RuntimeError(expr.paren, "Can only call functions and classes.");
             }
             
-
             IBuntCallable function = (IBuntCallable)callee;
             if (arguments.Count != function.arity)
             {
@@ -199,6 +198,12 @@ namespace bunt
             }
 
             return buntList;
+        }
+
+        // we return right away since there is no name binding to an anonymous function.
+        public object visitLambdaExpr(Expr.Lambda expr)
+        {
+            return new Lambda(expr, environment);
         }
 
         public object visitLiteralExpr(Expr.Literal expr)

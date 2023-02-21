@@ -42,6 +42,11 @@ namespace bunt
             return parenthesize("group", expr.expression);
         }
 
+        public string visitLambdaExpr(Expr.Lambda expr)
+        {
+            throw new NotImplementedException();
+        }
+
         public string visitListExpr(Expr.List expr)
         {
             throw new NotImplementedException();

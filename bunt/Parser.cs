@@ -548,6 +548,8 @@ namespace bunt
             if (match(TokenType.TRUE)) return new Expr.Literal(true);
             if (match(TokenType.NIL)) return new Expr.Literal(null);
 
+            if (match(TokenType.FUN)) return lambdaExpression();
+
             if (match(TokenType.NUMBER, TokenType.STRING))
             {
                 return new Expr.Literal(previous().literal);
@@ -590,6 +592,33 @@ namespace bunt
             }
 
             throw error(peek(), "Expect expression.");
+        }
+
+        private Expr lambdaExpression()
+        {
+            consume(TokenType.LEFT_PAREN, "Expect '(' after 'fun' keyword.");
+
+            List<Token> parameters = new List<Token>();
+
+            if (!check(TokenType.RIGHT_PAREN))
+            {
+                do
+                {
+                    if (parameters.Count >= 255)
+                    {
+                        error(peek(), "Can't have more than 255 parameters.");
+                    }
+
+                    parameters.Add(consume(TokenType.IDENTIFIER, "Expect parameter name."));
+                } while (match(TokenType.COMMA));
+            }
+
+            consume(TokenType.RIGHT_PAREN, "Expect ')' after parameters.");
+
+            consume(TokenType.LEFT_BRACE, "Expect '{' before function body.");
+            List<Stmt> body = block();
+
+            return new Expr.Lambda(parameters, body);
         }
 
         #endregion
