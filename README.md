@@ -6,6 +6,9 @@ It supports among many things.
 - functions
 - if statements
 - while / for loops
+- break
+- continue
+- lists
 - recursion
 - classes
 - constructors
