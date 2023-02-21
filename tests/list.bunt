@@ -6,3 +6,8 @@ print a[0]; // expect 1
 
 
 print a[3]; // expect 4
+
+
+a[2] = 10;
+
+print a; // expect [1,2,10,4]

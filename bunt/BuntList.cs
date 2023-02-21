@@ -52,6 +52,7 @@ namespace bunt
                 throw new ArgumentOutOfRangeException("index");
             }
 
+            variables.RemoveAt(index);
             variables.Insert(index, variable);
         }
 

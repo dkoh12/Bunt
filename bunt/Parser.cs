@@ -347,7 +347,8 @@ namespace bunt
                 }
                 else if (expr is Expr.Subscript) // array index
                 {
-
+                    Expr.Subscript subscript = (Expr.Subscript)expr;
+                    return new Expr.Subscript(subscript.obj, subscript.index, value);
                 }
 
                 error(equals, "Invalid assignment target.");
