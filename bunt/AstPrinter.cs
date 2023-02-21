@@ -63,6 +63,11 @@ namespace bunt
             throw new NotImplementedException();
         }
 
+        public string visitSubscriptExpr(Expr.Subscript expr)
+        {
+            throw new NotImplementedException();
+        }
+
         public string visitSuperExpr(Expr.Super expr)
         {
             throw new NotImplementedException();

@@ -345,6 +345,10 @@ namespace bunt
                     Expr.Get get = (Expr.Get)expr;
                     return new Expr.Set(get.obj, get.name, value);
                 }
+                else if (expr is Expr.Subscript) // array index
+                {
+
+                }
 
                 error(equals, "Invalid assignment target.");
             }
@@ -454,10 +458,10 @@ namespace bunt
             return call();
         }
 
-        // call -> primary ( "(" arguments? ")" | "." IDENTIFIER )*
+        // call -> subscript ( "(" arguments? ")" | "." IDENTIFIER )*
         private Expr call()
         {
-            Expr expr = primary();
+            Expr expr = subscript();
 
             while (true)
             {
@@ -469,6 +473,26 @@ namespace bunt
                 {
                     Token name = consume(TokenType.IDENTIFIER, "Expect property name after '.'.");
                     expr = new Expr.Get(expr, name);
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            return expr;
+        }
+
+        // subscript -> primary ( "[" logic_or "]" )*
+        private Expr subscript()
+        {
+            Expr expr = primary();
+
+            while (true)
+            {
+                if (match(TokenType.LEFT_BRACKET))
+                {
+                    expr = finishSubscript(expr); // array index.
                 }
                 else
                 {
@@ -508,7 +532,15 @@ namespace bunt
             return new Expr.Call(callee, paren, arguments);
         }
 
-        // primary -> NUMBER | STRING | "true" | "false" | "nil" | "this" | "(" expression ")" | IDENTIFIER | "super" "." IDENTIFIER
+        private Expr finishSubscript(Expr name)
+        {
+            Expr index = or();
+            consume(TokenType.RIGHT_BRACKET, "Expect ']' after arguments."); // i could return Token paren here for error reporting.
+            return new Expr.Subscript(name, index, null);
+        }
+
+        // primary -> NUMBER | STRING | "true" | "false" | "nil" | "this" | "(" expression ")" | "[" list "]" | IDENTIFIER | "super" "." IDENTIFIER
+        // list -> expression ( "," expression )*
         private Expr primary()
         {
             if (match(TokenType.FALSE)) return new Expr.Literal(false);

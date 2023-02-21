@@ -242,6 +242,40 @@ namespace bunt
             return value;
         }
 
+        public object visitSubscriptExpr(Expr.Subscript expr)
+        {
+            object obj = evaluate(expr.obj);
+            int index;
+
+            try
+            {
+                object idx = evaluate(expr.index);
+                index = Convert.ToInt32(idx);
+            } 
+            catch (Exception)
+            {
+                throw new Exception("Index should be of type int.");
+            }
+
+            if (obj is BuntList)
+            {
+                if (expr.value != null)
+                {
+                    // Set
+                    object value = evaluate(expr.value);
+
+                    ((BuntList)obj).AddAt(index, value);
+                }
+                else
+                {
+                    // Get
+                    return ((BuntList)obj).Get(index);
+                }
+            }
+
+            return null;
+        }
+
         public object visitSuperExpr(Expr.Super expr)
         {
             int distance = locals[expr];

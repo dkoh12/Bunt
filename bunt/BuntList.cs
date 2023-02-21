@@ -45,6 +45,16 @@ namespace bunt
             return variables[index];
         }
 
+        public void AddAt(int index, object variable)
+        {
+            if (index > variables.Count)
+            {
+                throw new ArgumentOutOfRangeException("index");
+            }
+
+            variables.Insert(index, variable);
+        }
+
         public void RemoveAt(int index)
         {
             if (index > variables.Count)

@@ -15,6 +15,7 @@ namespace bunt
 		T visitListExpr(List expr);
 		T visitLiteralExpr(Literal expr);
 		T visitLogicalExpr(Logical expr);
+		T visitSubscriptExpr(Subscript expr);
 		T visitSetExpr(Set expr);
 		T visitSuperExpr(Super expr);
 		T visitThisExpr(This expr);
@@ -132,6 +133,22 @@ namespace bunt
 
 			public override T accept<T>(IVisitor<T> visitor) {
 				return visitor.visitLogicalExpr(this);
+			}
+		}
+		public class Subscript : Expr
+		{
+			public readonly Expr obj;
+			public readonly Expr index;
+			public readonly Expr value;
+
+			public Subscript(Expr obj, Expr index, Expr value) {
+				this.obj = obj;
+				this.index = index;
+				this.value = value;
+			}
+
+			public override T accept<T>(IVisitor<T> visitor) {
+				return visitor.visitSubscriptExpr(this);
 			}
 		}
 		public class Set : Expr

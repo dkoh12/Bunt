@@ -221,6 +221,17 @@
             return null;
         }
 
+
+        // combining get and set for array subscript
+        public object visitSubscriptExpr(Expr.Subscript expr)
+        {
+            resolve(expr.obj);
+            resolve(expr.index);
+            if (expr.value != null) resolve(expr.value);
+
+            return null;
+        }
+
         public object visitSuperExpr(Expr.Super expr)
         {
             if (currentClass == ClassType.NONE)
