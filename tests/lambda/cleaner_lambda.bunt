@@ -1,0 +1,24 @@
+var subtract = (a, b) => {
+    print a - b;
+};
+
+subtract(1, 2); // expect -1;
+
+
+var log = () => { print "log"; };
+log(); // expect "log"
+
+
+var add = (a, b, c) => {
+    print a + b + c;
+};
+
+add(1, 2, 3); // expect 6
+
+
+var multiplyByTwo = (a) => {
+    return a * 2;
+};
+
+print multiplyByTwo(2); // expect 4
+

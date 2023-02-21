@@ -27,6 +27,7 @@
         GREATER_EQUAL,
         LESS,
         LESS_EQUAL,
+        ARROW,
 
         // literals
         IDENTIFIER,

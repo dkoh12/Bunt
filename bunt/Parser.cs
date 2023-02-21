@@ -572,9 +572,40 @@ namespace bunt
 
             if (match(TokenType.LEFT_PAREN))
             {
-                Expr expr = expression();
-                consume(TokenType.RIGHT_PAREN, "Expect ')' after expression.");
-                return new Expr.Grouping(expr);
+                List<Token> parameters = new List<Token>();
+
+                if (!check(TokenType.RIGHT_PAREN))
+                {
+                    try
+                    {
+                        do
+                        {
+                            if (parameters.Count >= 255)
+                            {
+                                error(peek(), "Can't have more than 255 parameters.");
+                            }
+
+                            parameters.Add(consume(TokenType.IDENTIFIER, "Expect parameter name."));
+                        } while (match(TokenType.COMMA));
+                    } 
+                    catch (Exception)
+                    {
+                        // it's not a lambda. It's a grouping.
+
+                        Expr expr = expression();
+                        consume(TokenType.RIGHT_PAREN, "Expect ')' after expression.");
+                        return new Expr.Grouping(expr);
+                    }
+                }
+
+                consume(TokenType.RIGHT_PAREN, "Expect ')' after parameters.");
+
+                consume(TokenType.ARROW, "Expect '=>' between parameters and function body.");
+
+                consume(TokenType.LEFT_BRACE, "Expect '{' before function body.");
+                List<Stmt> body = block();
+
+                return new Expr.Lambda(parameters, body);
             }
 
             if (match(TokenType.LEFT_BRACKET))
