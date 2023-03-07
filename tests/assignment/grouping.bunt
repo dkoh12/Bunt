@@ -1,0 +1,2 @@
+var a = "a";
+(a) = "value"; // Error at '=': Expect '=>' between parameters and function body.

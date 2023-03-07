@@ -1,0 +1,22 @@
+class Vehicle {
+    vehicle() {
+        print "this is a vehicle.";
+    }
+}
+
+class Car < Vehicle {
+    car() {
+        print "this is a car.";
+    }
+}
+
+class Ferrari < Car {
+    F1() {
+        print "this is a race car.";
+    }
+}
+
+var f = Ferrari();
+f.vehicle(); // expect 'this is a vehicle.'
+f.car();  // expect 'this is a car.'
+f.F1();  // expect 'this is a race car.'

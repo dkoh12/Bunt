@@ -1,0 +1,13 @@
+var f;
+
+class Foo {
+  method(param) {
+    fun b() {
+      print param;
+    }
+    f = b;
+  }
+}
+
+Foo().method("param");
+f(); // expect: param

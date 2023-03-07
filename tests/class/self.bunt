@@ -1,0 +1,20 @@
+//global reference
+class Foo {
+    returnSelf() {
+        return Foo;
+    }
+}
+
+print Foo().returnSelf(); // expect 'Foo class'
+
+
+// local reference
+{
+    class Bar {
+        returnSelf() {
+            return Bar;
+        }
+    }
+
+    print Bar().returnSelf(); // expect 'Bar class'
+}

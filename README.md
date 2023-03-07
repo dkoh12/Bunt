@@ -26,6 +26,16 @@ It supports among many things.
 - variable declaration and assignment
 
 
+## Why the name 'Bunt'?
+
+
+The name "Bunt" comes from the baseball term "bunt". 
+
+1. While an injured batter may not be able to hit a home run, he can still hit a bunt. I wrote the language while my wrist and arm were injured.
+
+2. bunt is not a powerful swing but it's just enough to get the ball rolling and doing it's job of moving the teammate from first base to second base. Likewise this language is not powerful and performant but has just enough features to write a simple program.
+
+
 ## Bunt REPL
 
 ### Launch Bunt REPL from Visual Studio

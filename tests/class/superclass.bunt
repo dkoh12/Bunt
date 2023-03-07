@@ -1,14 +1,14 @@
-class Doughnut {
+class FriedChicken {
     cook() {
         print "Fry until golden brown.";
     }
 }
 
-class BostonCream < Doughnut {
+class ExtraCrispyFriedChicken < FriedChicken {
     cook() {
         super.cook();
-        print "Pipe full of custard and coat with chocolate.";
+        print "Fry it again for 10 more min.";
     }
 }
 
-BostonCream().cook();
+ExtraCrispyFriedChicken().cook();

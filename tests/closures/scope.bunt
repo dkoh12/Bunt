@@ -9,7 +9,6 @@ var a = "global";
     showA();
 }
 
-
 // expect global / global
 
 

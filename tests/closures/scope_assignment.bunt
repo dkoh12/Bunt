@@ -1,0 +1,12 @@
+var a = "global";
+{
+    fun showA() {
+        a = "assigned";
+    }
+
+    var a = "block";    
+    showA();
+    print a; // expect 'block'
+}
+
+print a; // expect 'assigned'

@@ -1,5 +1,5 @@
 var a = 1;
 {
-    var a = a + 2;
+    var a = a + 2; // Expect: "error at 'a': can't read local variable in its own initializer
     print a;
 }
